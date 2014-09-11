@@ -4,9 +4,6 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @tweets = Twitter::REST::Client.
-      new(TWITTER_CONFIG).
-      search("##{params[:id]}").
-      take(15)
+    @tweets = Searcher.new("##{params[:id]}").results
   end
 end
